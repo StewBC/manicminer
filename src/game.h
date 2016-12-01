@@ -9,16 +9,16 @@
 #ifndef _GAME_H_
 #define _GAME_H_
 
-int main();
-void mainLoop();
-void setup();
-void prepLevel();
-char runGame();
+int main(void);
+void mainLoop(void);
+void setup(void);
+void prepLevel(void);
+char runGame(void);
 char buildTracking(char bx);
-void buildPowerBeamPath();
+void buildPowerBeamPath(void);
 char checkCollision(char bufferValue);
 void doFrameAndClassForSprite(SpriteData *sprt);
-void moveSprites();
-BOOL moveWilly();
+void moveSprites(void);
+BOOL moveWilly(void);
 
 #endif
