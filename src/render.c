@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <c64.h>
+#include <cbm.h>
 #include "data.h"
 #include "globals.h"
 #include "render.h"
@@ -25,7 +25,13 @@ void renderSetup()
 
 	CIA2.ddra |= 0x03;
 	CIA2.pra = (CIA2.pra & 0xfc) | (3-(VIC_BASE_RAM / 0x4000));
+#ifdef __C64__
 	VIC.addr = ((((int)(SCREEN_RAM - VIC_BASE_RAM) / 0x0400) << 4) + (((int)(CHARMAP_RAM - VIC_BASE_RAM) / 0x0800) << 1));
+#endif
+#ifdef __C128__
+	*((char*)0xa04) = 0;
+	*((char*)0xa2c) = ((((int)(SCREEN_RAM - VIC_BASE_RAM) / 0x0400) << 4) + (((int)(CHARMAP_RAM - VIC_BASE_RAM) / 0x0800) << 1));
+#endif
 	*MEM_KRNL_PRNT = (int)SCREEN_RAM / 256;
 	CIA1.cra = (CIA1.cra & 0xc0) | 0x10;
 	CIA1.crb |= 0x40;

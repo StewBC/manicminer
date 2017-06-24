@@ -17,7 +17,12 @@
 #define	SPRITE_RAM				((char*)VIC_BASE_RAM+0x3000)
 #define LVL_SPRITE_RAM			((char*)VIC_BASE_RAM+0x3200)
 #define COLOUR_RAM				((char*)0xd800)
+#ifdef __C64__
 #define MEM_KRNL_PRNT			((char*)0x288)
+#endif
+#ifdef __C128__
+#define MEM_KRNL_PRNT			((char*)0xa3b)
+#endif
 
 //-------------------------------------------------------------------------
 #define CharY					8
